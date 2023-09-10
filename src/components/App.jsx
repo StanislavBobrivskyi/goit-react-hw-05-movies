@@ -1,3 +1,5 @@
+import Routes from 'Routes';
+
 export const App = () => {
   return (
     <div
@@ -10,7 +12,9 @@ export const App = () => {
         color: '#010101',
       }}
     >
-      HERE WILL BE MOVIE SEARCH
+      <Routes />
     </div>
   );
 };
+
+// key:7194b7b08f433157032a7a5a310c946f
