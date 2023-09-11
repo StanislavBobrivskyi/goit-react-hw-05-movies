@@ -1,4 +1,4 @@
-import Routes from 'Routes';
+import Routers from '../Routes';
 
 export const App = () => {
   return (
@@ -12,7 +12,7 @@ export const App = () => {
         color: '#010101',
       }}
     >
-      <Routes />
+      <Routers />
     </div>
   );
 };

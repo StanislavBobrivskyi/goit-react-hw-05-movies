@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Routes, Route, Switch } from 'react-router-dom';
 
 const Home = lazy(() => import('./components/Home/Home'));
 const Movies = lazy(() => import('./components/Movies/Movies'));
@@ -9,9 +9,9 @@ const MovieDetails = lazy(() =>
 const Cast = lazy(() => import('./components/Cast/Cast'));
 const Reviews = lazy(() => import('./components/Reviews/Reviews'));
 
-function Routes() {
+export default function Routers() {
   return (
-    <Router>
+    <Routes>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -22,8 +22,6 @@ function Routes() {
           <Route render={() => <div>Page not found</div>} />
         </Switch>
       </Suspense>
-    </Router>
+    </Routes>
   );
 }
-
-export default Routes;
