@@ -1,25 +1,53 @@
-const apiKey = '7194b7b08f433157032a7a5a310c946f';
+import React, { useState } from 'react';
+import { searchMovies } from '../api'; // Імпортуємо функцію для пошуку фільмів
 
-// Отримання результатів пошуку фільмів за ключовим словом
-async function searchMoviesByKeyword(keyword) {
-  try {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
-        keyword
-      )}`
-    );
-    if (!response.ok) {
-      throw new Error('Request failed');
-    }
-    const data = await response.json();
-    return data.results;
-  } catch (error) {
-    console.error('Error searching movies:', error);
-    throw error;
-  }
+export default function Movies() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const handleSearchChange = e => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchSubmit = e => {
+    e.preventDefault();
+    if (!searchQuery) return;
+
+    setLoading(true);
+
+    searchMovies(searchQuery)
+      .then(response => {
+        setSearchResults(response.data.results);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error searching movies:', error);
+        setLoading(false);
+      });
+  };
+
+  return (
+    <div>
+      <h1>Search Movies</h1>
+      <form onSubmit={handleSearchSubmit}>
+        <input
+          type="text"
+          placeholder="Search for movies..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+        <button type="submit">Search</button>
+      </form>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <ul>
+          {searchResults.map(movie => (
+            <li key={movie.id}>{movie.title}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
-
-// Використання функції для пошуку фільмів за ключовим словом
-const keyword = 'YourSearchKeyword'; // Замініть це на фактичний ключовий запит
-const searchResults = await searchMoviesByKeyword(keyword);
-console.log('Search results:', searchResults);

@@ -1,22 +1,35 @@
-const apiKey = '7194b7b08f433157032a7a5a310c946f';
+import React, { useEffect, useState } from 'react';
+import { getTrendingMovies } from '../api'; // Імпортуємо функцію для отримання популярних фільмів
 
-// Отримання списку найпопулярніших фільмів
-async function fetchTrendingMovies() {
-  try {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`
-    );
-    if (!response.ok) {
-      throw new Error('Request failed');
-    }
-    const data = await response.json();
-    return data.results;
-  } catch (error) {
-    console.error('Error fetching trending movies:', error);
-    throw error;
-  }
+export default function Home() {
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Отримуємо список популярних фільмів після завантаження компонента
+    getTrendingMovies()
+      .then(response => {
+        setTrendingMovies(response.data.results);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching trending movies:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <div>
+      <h1>Trending Movies</h1>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <ul>
+          {trendingMovies.map(movie => (
+            <li key={movie.id}>{movie.title}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
-
-// Використання функції для отримання списку найпопулярніших фільмів
-const trendingMovies = await fetchTrendingMovies();
-console.log('Trending movies:', trendingMovies);
