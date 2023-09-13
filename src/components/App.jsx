@@ -1,6 +1,6 @@
 import { Route, Routes, Link } from 'react-router-dom';
 
-import MovieDetails from '../pages/MovieDetails/MovieDetails'; // Імпортуємо компонент Movies
+import Movie from '../pages/Movie/Movie'; // Імпортуємо компонент Movies
 import MoviesDetails from './MoviesDetails/MoviesDetails'; // Імпортуємо компонент MovieDetails
 import Cast from './Cast/Cast'; // Імпортуємо компонент Cast
 import Reviews from './Reviews/Reviews'; // Імпортуємо компонент Reviews
@@ -21,7 +21,7 @@ export const App = () => {
       </nav>
       <Routes fallback={<div>Loading...</div>}>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/movies" element={<MovieDetails />} />
+        <Route exact path="/movies" element={<Movie />} />
         {/* Сторінка пошуку фільмів */}
         <Route exact path="/movies/:movieId" element={<MoviesDetails />} />{' '}
         {/* Сторінка деталей фільму */}
