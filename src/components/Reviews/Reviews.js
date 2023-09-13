@@ -21,3 +21,7 @@
 // const movieId = '12345'; // Замініть це на фактичний ідентифікатор фільму
 // const reviews = await fetchMovieReviews(movieId);
 // console.log('Movie reviews:', reviews);
+const Reviews = () => {
+  return <div>PUSH me</div>;
+};
+export default Reviews;

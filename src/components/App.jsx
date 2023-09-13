@@ -1,10 +1,10 @@
 import { Route, Routes, Link } from 'react-router-dom';
 
-import Movies from './Movies/Movies'; // Імпортуємо компонент Movies
-import MovieDetails from './MovieDetails/MovieDetails'; // Імпортуємо компонент MovieDetails
+import MovieDetails from '../pages/MovieDetails/MovieDetails'; // Імпортуємо компонент Movies
+import MoviesDetails from './MoviesDetails/MoviesDetails'; // Імпортуємо компонент MovieDetails
 import Cast from './Cast/Cast'; // Імпортуємо компонент Cast
 import Reviews from './Reviews/Reviews'; // Імпортуємо компонент Reviews
-import Home from './Home/Home';
+import Home from '../pages/Home/Home';
 
 export const App = () => {
   return (
@@ -21,20 +21,15 @@ export const App = () => {
       </nav>
       <Routes fallback={<div>Loading...</div>}>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/movies" element={<Movies />} />
+        <Route exact path="/movies" element={<MovieDetails />} />
         {/* Сторінка пошуку фільмів */}
-        <Route
-          exact
-          path="/movies/:movieId"
-          component={<MovieDetails />}
-        />{' '}
+        <Route exact path="/movies/:movieId" element={<MoviesDetails />} />{' '}
         {/* Сторінка деталей фільму */}
-        <Route path="/movies/:movieId/cast" element={<Cast />} />{' '}
+        <Route path="/movies/:movieId/cast" element={<Cast />} />
         {/* Сторінка акторського складу */}
-        <Route path="/movies/:movieId/reviews" element={<Reviews />} />{' '}
+        <Route path="/movies/:movieId/reviews" element={<Reviews />} />
         {/* Сторінка оглядів */}
-        <Route render={() => <div>Page not found</div>} />{' '}
-        {/* Сторінка 404, якщо маршрут не знайдено */}
+        <Route render={() => <div>Page not found</div>} />
       </Routes>
     </div>
   );

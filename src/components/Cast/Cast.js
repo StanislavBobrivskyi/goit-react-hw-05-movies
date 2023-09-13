@@ -21,3 +21,7 @@
 // const movieId = '12345'; // Замініть це на фактичний ідентифікатор фільму
 // const cast = await fetchMovieCast(movieId);
 // console.log('Movie cast:', cast);
+const Cast = () => {
+  return <div>PUSH me</div>;
+};
+export default Cast;

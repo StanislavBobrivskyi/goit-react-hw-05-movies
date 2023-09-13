@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getTrendingMovies } from '../api'; // Імпортуємо функцію для отримання популярних фільмів
+import { getTrendingMovies } from '../API'; // Імпортуємо функцію для отримання популярних фільмів
 
 export default function Home() {
   const [trendingMovies, setTrendingMovies] = useState([]);

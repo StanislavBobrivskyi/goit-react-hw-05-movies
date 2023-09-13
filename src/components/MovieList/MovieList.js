@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { searchMovies } from '../api'; // Імпортуємо функцію для пошуку фільмів
+import { searchMovies } from '../API'; // Імпортуємо функцію для пошуку фільмів
 
 export default function Movies() {
   const [searchQuery, setSearchQuery] = useState('');
