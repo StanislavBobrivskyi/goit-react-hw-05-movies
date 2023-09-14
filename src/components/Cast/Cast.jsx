@@ -1,4 +1,4 @@
-import CastItem from 'components/CastItem/CastItem';
+import CastDetail from 'components/CastItem/CastDetail';
 import ErrorMessage from 'components/ErrorMessages/ErrorMessages';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -28,8 +28,8 @@ const Cast = () => {
       {cast && (
         <div>
           <ul>
-            {cast.map((actorInf, index) => {
-              return <CastItem cast={actorInf} index={index} />;
+            {cast.map((actor, id) => {
+              return <CastDetail cast={actor} index={id} />;
             })}
           </ul>
         </div>

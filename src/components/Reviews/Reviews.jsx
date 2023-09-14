@@ -1,5 +1,5 @@
 import ErrorMessage from 'components/ErrorMessages/ErrorMessages';
-import ReviewItem from 'components/ReviewItem/ReviewItem';
+import ReviewDetail from 'components/ReviewDetail/ReviewDetail';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviwsMovie } from 'api';
@@ -29,7 +29,7 @@ const Reviews = () => {
         <div>
           <ul>
             {reviews.map((review, index) => {
-              return <ReviewItem review={review} index={index} />;
+              return <ReviewDetail review={review} index={index} />;
             })}
           </ul>
         </div>
