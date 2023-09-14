@@ -2,25 +2,25 @@ import { Suspense } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
 import { Loader } from 'components/Loader/Loader';
-
+import { PagesList, PageItem, PageContainer } from './SharedLayout.styled';
 const SharedLayout = () => {
   const location = useLocation();
   return (
-    <div>
+    <PageContainer>
       <header>
         <nav>
-          <ul>
-            <li>
+          <PagesList>
+            <PageItem>
               <NavLink to="/" state={{ from: location }}>
                 Home page
               </NavLink>
-            </li>
-            <li>
+            </PageItem>
+            <PageItem>
               <NavLink to="/movies" state={{ from: location }}>
                 Movies
               </NavLink>
-            </li>
-          </ul>
+            </PageItem>
+          </PagesList>
         </nav>
       </header>
       <Suspense
@@ -32,7 +32,7 @@ const SharedLayout = () => {
       >
         <Outlet />
       </Suspense>
-    </div>
+    </PageContainer>
   );
 };
 

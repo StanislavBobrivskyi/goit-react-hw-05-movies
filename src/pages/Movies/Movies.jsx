@@ -3,6 +3,7 @@ import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMoviesBySearch } from 'api';
 import MoviesList from 'components/MoviesList/MoviesList';
 import { IoArrowBackCircle } from 'react-icons/io5';
+import { InputStyle } from './Movies.styled';
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query');
@@ -38,7 +39,7 @@ const Movies = () => {
       <h2>Search movies</h2>
       <form onSubmit={handleSubmitForm}>
         <label name="searchMovies">
-          <input
+          <InputStyle
             name="searchMovies"
             type="text"
             autoComplete="off"

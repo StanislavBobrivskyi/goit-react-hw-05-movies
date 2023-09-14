@@ -5,6 +5,8 @@ import { fetchMoviesById } from 'api';
 import { Loader } from 'components/Loader/Loader';
 import getPoster from 'getDefaultImg';
 import { IoArrowBackCircle } from 'react-icons/io5';
+
+import { AddInform, InformItems } from './MovieDetails.styled';
 const MoviesDetailes = () => {
   const { moviesId } = useParams();
   const [movie, setMovie] = useState(null);
@@ -36,24 +38,33 @@ const MoviesDetailes = () => {
             Go back
           </NavLink>
           <div>
-            <img
-              src={getPoster(movie.poster_path)}
-              alt="Poster movie"
-              width={'300px'}
-            />
-            <h2>
-              {movie.original_title}
-              <span> ({movie.release_date.substr(0, [4])})</span>
-            </h2>
-            <p>User Score: {movie.vote_average}</p>
-            <h3>Overview</h3>
-            <p>{movie.overview}</p>
-            <h3>Genres</h3>
-            <ul>
-              {movie.genres.map(({ name }, index) => {
-                return <li key={index}>{name}</li>;
-              })}
-            </ul>
+            <div>
+              <h2>
+                {movie.original_title}
+                <span> ({movie.release_date.substr(0, [4])})</span>
+              </h2>
+              <img
+                src={getPoster(movie.poster_path)}
+                alt="Poster movie"
+                width={'300px'}
+              />
+            </div>
+
+            <div>
+              <p>User Score: {movie.vote_average}</p>
+              <div>
+                <h3>Overview</h3>
+                <p>{movie.overview}</p>
+              </div>
+              <div>
+                <h3>Genres</h3>
+                <ul>
+                  {movie.genres.map(({ name }, id) => {
+                    return <li key={id}>{name}</li>;
+                  })}
+                </ul>
+              </div>
+            </div>
           </div>
         </>
       )}
@@ -61,14 +72,14 @@ const MoviesDetailes = () => {
       {movie && (
         <div>
           <h3>Additional information</h3>
-          <ul>
-            <li>
+          <AddInform>
+            <InformItems>
               <NavLink to="cast">Cast</NavLink>
-            </li>
-            <li>
+            </InformItems>
+            <InformItems>
               <NavLink to="reviews">Reviews</NavLink>
-            </li>
-          </ul>
+            </InformItems>
+          </AddInform>
         </div>
       )}
       <Suspense
