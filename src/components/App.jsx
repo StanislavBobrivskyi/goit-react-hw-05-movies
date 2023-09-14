@@ -1,38 +1,28 @@
-import { Route, Routes, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { lazy } from 'react';
 
-import Movie from '../pages/Movie/Movie'; // Імпортуємо компонент Movies
-import MoviesDetails from './MoviesDetails/MoviesDetails'; // Імпортуємо компонент MovieDetails
-import Cast from './Cast/Cast'; // Імпортуємо компонент Cast
-import Reviews from './Reviews/Reviews'; // Імпортуємо компонент Reviews
-import Home from '../pages/Home/Home';
+const SharedLayout = lazy(() => import('./SharedLayout/SharedLayout'));
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const Movies = lazy(() => import('pages/Movies/Movies'));
+const ErrorMessage = lazy(() => import('./ErrorMessages/ErrorMessages'));
+const MoviesDetailes = lazy(() => import('pages/MovieDetails/MovieDetails'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
+const Cast = lazy(() => import('./Cast/Cast'));
 
 export const App = () => {
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">HOME</Link>
-          </li>
-          <li>
-            <Link to="/movies">MOVIES</Link>
-          </li>
-        </ul>
-      </nav>
-      <Routes fallback={<div>Loading...</div>}>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/movies" element={<Movie />} />
-        {/* Сторінка пошуку фільмів */}
-        <Route exact path="/movies/:movieId" element={<MoviesDetails />} />{' '}
-        {/* Сторінка деталей фільму */}
-        <Route path="/movies/:movieId/cast" element={<Cast />} />
-        {/* Сторінка акторського складу */}
-        <Route path="/movies/:movieId/reviews" element={<Reviews />} />
-        {/* Сторінка оглядів */}
-        <Route render={() => <div>Page not found</div>} />
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="movies" element={<Movies />} />
+          <Route path="movies/:moviesId" element={<MoviesDetailes />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<ErrorMessage />} />
+        </Route>
       </Routes>
     </div>
   );
 };
-
-// key:7194b7b08f433157032a7a5a310c946f
