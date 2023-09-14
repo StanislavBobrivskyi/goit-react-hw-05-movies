@@ -4,7 +4,7 @@ import ErrorMessage from 'components/ErrorMessages/ErrorMessages';
 import { fetchMoviesById } from 'api';
 import { Loader } from 'components/Loader/Loader';
 import getPoster from 'getDefaultImg';
-
+import { IoArrowBackCircle } from 'react-icons/io5';
 const MoviesDetailes = () => {
   const { moviesId } = useParams();
   const [movie, setMovie] = useState(null);
@@ -31,7 +31,10 @@ const MoviesDetailes = () => {
       {error && <ErrorMessage />}
       {movie && (
         <>
-          <NavLink to={backLinkLocatinRef.current}>Go back</NavLink>
+          <NavLink to={backLinkLocatinRef.current}>
+            <IoArrowBackCircle />
+            Go back
+          </NavLink>
           <div>
             <img
               src={getPoster(movie.poster_path)}

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMoviesBySearch } from 'api';
 import MoviesList from 'components/MoviesList/MoviesList';
-
+import { IoArrowBackCircle } from 'react-icons/io5';
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query');
@@ -32,7 +32,9 @@ const Movies = () => {
 
   return (
     <>
-      <NavLink to={backLinkHref}>Go back</NavLink>
+      <NavLink to={backLinkHref}>
+        <IoArrowBackCircle /> Go back
+      </NavLink>
       <h2>Search movies</h2>
       <form onSubmit={handleSubmitForm}>
         <label name="searchMovies">
