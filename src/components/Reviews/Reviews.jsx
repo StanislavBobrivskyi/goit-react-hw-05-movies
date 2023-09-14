@@ -2,7 +2,7 @@ import ErrorMessage from 'components/ErrorMessages/ErrorMessages';
 import ReviewItem from 'components/ReviewItem/ReviewItem';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchReviwsMovie } from 'services/api';
+import { fetchReviwsMovie } from 'api';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);

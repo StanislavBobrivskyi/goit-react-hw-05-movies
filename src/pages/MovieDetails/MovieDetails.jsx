@@ -1,9 +1,9 @@
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 import ErrorMessage from 'components/ErrorMessages/ErrorMessages';
-import { fetchMoviesById } from 'services/api';
+import { fetchMoviesById } from 'api';
 import { Loader } from 'components/Loader/Loader';
-import getPoster from 'services/getDefaultImg';
+import getPoster from 'getDefaultImg';
 
 const MoviesDetailes = () => {
   const { moviesId } = useParams();

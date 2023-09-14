@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
-import { fetchMoviesBySearch } from 'services/api';
+import { fetchMoviesBySearch } from 'api';
 import MoviesList from 'components/MoviesList/MoviesList';
 
 const Movies = () => {
