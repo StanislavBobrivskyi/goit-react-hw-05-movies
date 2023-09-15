@@ -3,15 +3,17 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
 import { Loader } from 'components/Loader/Loader';
 import { PagesList, PageItem, PageContainer } from './SharedLayout.styled';
+
 const SharedLayout = () => {
   const location = useLocation();
+
   return (
     <PageContainer>
       <header>
         <nav>
           <PagesList>
             <PageItem>
-              <NavLink to="/" state={{ from: location }}>
+              <NavLink exact to="/" state={{ from: location }}>
                 Home page
               </NavLink>
             </PageItem>
